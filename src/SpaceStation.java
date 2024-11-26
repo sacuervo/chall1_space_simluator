@@ -79,8 +79,8 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Test multiple choice question
-        askMultipleChoiceQuestion("Test question: ", planetNames);
+        // Test yes-or-no question
+        askYesOrNo("Test question: ");
 
     }
 
@@ -364,18 +364,19 @@ public class SpaceStation {
 
     // }
 
-    private static void exploreDestinations() {
-        getPlanetsInfo();
+    // TODO: Finish exploreDestinations() implementation
+    // private static void exploreDestinations() {
+    // getPlanetsInfo();
 
-        System.out.println();
+    // System.out.println();
 
-        var travelNow = askYesOrNo("Would you like to travel now?");
+    // var travelNow = askYesOrNo("Would you like to travel now?");
 
-        if (travelNow == 1) {
-            travelNow();
-        }
+    // if (travelNow == 1) {
+    // travelNow();
+    // }
 
-    }
+    // }
 
     // --- REQUEST USER INPUT ---
     // Mutliple choice question
@@ -409,6 +410,36 @@ public class SpaceStation {
                 System.err.println(
                         "Invalid input. Please try again entering one of the numeric options displayed.\n");
                 // Integer validation (non-numeric data types)
+            } catch (IllegalArgumentException ex) {
+                System.err.println(ex.getMessage() + "\n");
+            }
+        }
+
+        return answer;
+
+    }
+
+    // Yes or no question
+    private static int askYesOrNo(String message) {
+
+        var answer = 0;
+        var validAnswer = false;
+
+        while (!validAnswer) {
+
+            System.out.println(message);
+            System.out.println("1. Yes\n2. No");
+
+            try {
+                answer = Integer.parseInt(sc.nextLine());
+
+                if (answer < 1 || answer > 2) {
+                    throw new IllegalArgumentException("Invalid choice. Please try again entering 1 or 2.\n");
+                } else {
+                    validAnswer = true;
+                }
+            } catch (NumberFormatException ex) {
+                System.err.println("Invalid input. Please try again entering 1 or 2.");
             } catch (IllegalArgumentException ex) {
                 System.err.println(ex.getMessage() + "\n");
             }
