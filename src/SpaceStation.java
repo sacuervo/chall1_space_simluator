@@ -24,6 +24,8 @@
 // TODO:Generar un número aleatorio y contrastarlo con un una condición que signifique la ocurrencia de un evento inesperado
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SpaceStation {
 
@@ -36,6 +38,8 @@ public class SpaceStation {
     private static DecimalFormat fuelAndDistanceAmountFormatter = new DecimalFormat("#,###.##");
 
     private static DecimalFormat percentageFormatter = new DecimalFormat("#.##");
+
+    private static Scanner sc = new Scanner(System.in);
 
     /*
      * WHY USE ARRAYS INSTEAD OF ARRAYLISTS?
@@ -75,8 +79,8 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Print planets information test
-        getPlanetsInfo();
+        // Test multiple choice question
+        askMultipleChoiceQuestion("Test question: ", planetNames);
 
     }
 
@@ -293,63 +297,109 @@ public class SpaceStation {
 
     // --- MAIN MENU IMPLEMENTATION ---
     // Run main menu
-    private static void runMainMenu() {
+    // private static void runMainMenu() {
 
-        // Initiate flag
-        var isExecutingMenu = true;
+    // // Initiate flag
+    // var isExecutingMenu = true;
 
-        while (isExecutingMenu) {
+    // while (isExecutingMenu) {
 
-            // Welcome user
-            System.out.println();
-            System.out.println(
-                    """
-                            \s_____  ____  _____  ____   ____   _____  _____       \n/  ___>/    \\/   __\\/  _/  /  _/  /  _  \\/  _  \\      \n|___  |\\-  -/|   __||  |---|  |---|  _  ||  _  <      \n<_____/ |__| \\_____/\\_____/\\_____/\\__|__/\\__|\\_/      \n                                                      \n __ __  _____  _____  ___  _____  _____  _____  _____ \n/  |  \\/  _  \\/  _  \\/___\\|__   //  _  \\/  _  \\/  ___>\n|  _  ||  |  ||  _  <|   | /  _/ |  |  ||  |  ||___  |\n\\__|__/\\_____/\\__|\\_/\\___//_____|\\_____/\\__|__/<_____/
-                                              """);
+    // // Welcome user
+    // System.out.println();
+    // System.out.println(
+    // """
+    // \s_____ ____ _____ ____ ____ _____ _____ \n/ ___>/ \\/ __\\/ _/ / _/ / _ \\/
+    // _ \\ \n|___ |\\- -/| __|| |---| |---| _ || _ < \n<_____/ |__|
+    // \\_____/\\_____/\\_____/\\__|__/\\__|\\_/ \n \n __ __ _____ _____ ___ _____
+    // _____ _____ _____ \n/ | \\/ _ \\/ _ \\/___\\|__ // _ \\/ _ \\/ ___>\n| _ || |
+    // || _ <| | / _/ | | || | ||___
+    // |\n\\__|__/\\_____/\\__|\\_/\\___//_____|\\_____/\\__|__/<_____/
+    // """);
 
-            var welcomeMessage = "Welcome to Stellar Horizons!\nPlease select and option: ";
+    // var welcomeMessage = "Welcome to Stellar Horizons!\nPlease select and option:
+    // ";
 
-            // Ask for user input
-            /*
-             * TODO: Implement askMultipleChoiceQuestion()
-             * Only integers are allowed
-             * Only positive values are allowed
-             * Handle non-numeric inputs
-             */
-            var mainMenuSelection = askMultipleChoiceQuestion(welcomeMessage, menuOptions);
+    // // Ask for user input
+    // /*
+    // * TODO: Implement askMultipleChoiceQuestion()
+    // * Only integers are allowed
+    // * Only positive values are allowed
+    // * Handle non-numeric inputs
+    // */
+    // var mainMenuSelection = askMultipleChoiceQuestion(welcomeMessage,
+    // menuOptions);
 
-            // React to user input
-            switch (mainMenuSelection) {
-                case 1:
-                    /*
-                     * TODO: Implement exploreDestinations()
-                     * Shows all the planets' information
-                     * Asks user if they want to travel;
-                     * executes travelNow() if they do.
-                     */
-                    exploreDestinations();
-                    break;
-                case 2:
-                    getRocketsInfo();
-                    break;
-                case 3:
-                    /*
-                     * TODO: Implement travelNow()
-                     */
-                    travelNow();
-                    break;
-                case 4:
-                    // Exits menu and ends aplication if user selects '4'
-                    isExecutingMenu = false;
-                    System.out.println("Until next time!\n");
-                    break;
-                default:
-                    System.err.println("Invalid option.");
-                    isExecutingMenu = false;
-                    break;
+    // // React to user input
+    // switch (mainMenuSelection) {
+    // case 1:
+    // /*
+    // * TODO: Implement exploreDestinations()
+    // * Shows all the planets' information
+    // * Asks user if they want to travel;
+    // * executes travelNow() if they do.
+    // */
+    // exploreDestinations();
+    // break;
+    // case 2:
+    // getRocketsInfo();
+    // break;
+    // case 3:
+    // /*
+    // * TODO: Implement travelNow()
+    // */
+    // travelNow();
+    // break;
+    // case 4:
+    // // Exits menu and ends aplication if user selects '4'
+    // isExecutingMenu = false;
+    // System.out.println("Until next time!\n");
+    // break;
+    // default:
+    // System.err.println("Invalid option.");
+    // isExecutingMenu = false;
+    // break;
+    // }
+
+    // }
+
+    // }
+
+    private static int askMultipleChoiceQuestion(String message, String[] options) {
+
+        var answer = 0;
+        var validAnswer = false;
+
+        // Line break
+        System.out.println();
+
+        while (!validAnswer) {
+            try {
+                System.out.println(message);
+
+                for (int i = 0; i < options.length; i++) {
+                    System.out.printf("%d. %s%n", i + 1, options[i]);
+                }
+
+                answer = Integer.parseInt(sc.nextLine());
+
+                if (answer < 1 || answer > options.length) {
+                    throw new IllegalArgumentException(
+                            "Invalid input. Please try again entering one of the numeric options displayed.\n");
+                }
+
+                validAnswer = true;
+
+                // Integer validation (numeric data types)
+            } catch (NumberFormatException ex) {
+                System.err.println(
+                        "Invalid input. Please try again entering one of the numeric options displayed.\n");
+                // Integer validation (non-numeric data types)
+            } catch (IllegalArgumentException ex) {
+                System.err.println(ex.getMessage() + "\n");
             }
-
         }
+
+        return answer;
 
     }
 }
