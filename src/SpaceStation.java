@@ -75,8 +75,8 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Print rockets information test
-        getRocketsInfo();
+        // Print planets information test
+        getPlanetsInfo();
 
     }
 
@@ -132,7 +132,7 @@ public class SpaceStation {
     private static String[] getPlanetInformation() {
 
         var planetInformation = new String[] {
-                "Visitors may witness diamond rains in Neptune",
+                "Visitors may witness diamond rains in Neptune.",
                 "Uranus was the first planet to be discovered by a telescope.",
                 "Saturn has 146 moons in orbit, more than any other planet in our Solar System.",
                 "Jupiter is the biggest planet in our Solar System.",
@@ -225,7 +225,7 @@ public class SpaceStation {
     }
 
     // --- PRINT INFORMATION IN CONSOLE ---
-
+    // Print rockets information
     private static void getRocketsInfo() {
 
         System.out.printf("%n--- OUR ROCKETS ---%n");
@@ -257,4 +257,37 @@ public class SpaceStation {
 
     }
 
+    private static void getPlanetsInfo() {
+
+        System.out.printf("%n--- DESTINATIONS ---%n");
+
+        System.out.println("""
+                                     .::.
+                                  .:'  .:
+                        ,MMM8&&&.:'   .:'
+                       MMMMM88&&&&  .:'
+                      MMMMM88&&&&&&:'
+                      MMMMM88&&&&&&
+                    .:MMMMM88&&&&&&
+                  .:'  MMMMM88&&&&
+                .:'   .:'MMM8&&&'
+                :'  .:'
+                '::'
+                                """);
+
+        for (int i = 0; i < planetNames.length; i++) {
+            // Show planet name
+            System.out.printf("%n*** %d. %s ***%n", i + 1, planetNames[i]);
+
+            // Show distance from Earth
+            System.out.printf("%s is %s km away from Earth.%n", planetNames[i],
+                    fuelAndDistanceAmountFormatter.format(planetDistances[i]));
+
+            // Show planet information
+            System.out.println(planetInformation[i]);
+        }
+
+        System.out.println("\n---------------------");
+
+    }
 }
