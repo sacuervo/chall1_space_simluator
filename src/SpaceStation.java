@@ -42,25 +42,32 @@ public class SpaceStation {
      */
 
     // INITIALIZE PLANET INFORMATION
-    private static String[] menuOptions = getMainMenuOptions();
+    private static final String[] menuOptions = getMainMenuOptions();
 
-    private static String[] planetNames = getPlanetNames();
+    private static final String[] planetNames = getPlanetNames();
 
-    private static Double[] planetDistances = getPlanetDistances();
+    private static final Double[] planetDistances = getPlanetDistances();
 
-    private static String[] planetInformation = getPlanetInformation();
+    private static final String[] planetInformation = getPlanetInformation();
 
     // INITIALIZE ROCKET INFORMATION
-    private static String[] rocketNames = getRocketNames();
+    private static final String[] rocketNames = getRocketNames();
 
     // Speeds given in km/h
-    private static Double[] rocketSpeeds = getRocketSpeeds();
+    private static final Double[] rocketSpeeds = getRocketSpeeds();
 
     // Rocket fuel consumption rates given in gal/h
-    private static Double[] rocketFuelConsumptionRates = getRocketFuelConsumptionRates();
+    private static final Double[] rocketFuelConsumptionRates = getRocketFuelConsumptionRates();
 
     // Rocket fuel tank capacities given in gal
-    private static Double[] rocketFuelTankCapacities = getRocketFuelTankCapacities();
+    private static final Double[] rocketFuelTankCapacities = getRocketFuelTankCapacities();
+
+    /*
+     * Fuel tanks start full.
+     * getRocketFuelTankCapacities() also works to initialize this variable
+     * Not final. Values will be modified.
+     */
+    private static Double 
 
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
