@@ -364,7 +364,7 @@ public class SpaceStation {
 
     // }
 
-    // TODO: Finish exploreDestinations() implementation
+    // TODO: (Finish) Explore destinations menu option
     // private static void exploreDestinations() {
     // getPlanetsInfo();
 
@@ -377,6 +377,18 @@ public class SpaceStation {
     // }
 
     // }
+
+    private static void travelNow() {
+
+        // TODO: Select destination
+        // TODO: Select rocket
+        // TODO: Perform pre-launch rocket fuel level check
+        // TODO: Request passenger number
+        // TODO: Calculated estimated travel time
+        // TODO: Show destination planet info
+        // TODO: Implement the journey in a nested loop
+
+    }
 
     // --- REQUEST USER INPUT ---
     // Mutliple choice question
