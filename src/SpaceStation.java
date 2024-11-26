@@ -56,11 +56,15 @@ public class SpaceStation {
     // Speeds given in km/h
     private static Double[] rocketSpeeds = getRocketSpeeds();
 
+    // Rocket fuel consumption rates given in gal/h
+    private static Double[] rocketFuelConsumptionRates = getRocketFuelConsumptionRates();
+
+    // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
         // Array creation test
-        for (Double rocketSpeed : rocketSpeeds) {
-            System.out.println(rocketSpeed + "\n");
+        for (Double rocketFuelConsumptionRate : rocketFuelConsumptionRates) {
+            System.out.println(rocketFuelConsumptionRate + "\n");
         }
 
     }
@@ -145,7 +149,7 @@ public class SpaceStation {
 
     }
 
-    // Store rocket speeds
+    // Store rocket speeds (km / h)
     private static Double[] getRocketSpeeds() {
 
         var rocketSpeeds = new Double[] {
@@ -156,6 +160,20 @@ public class SpaceStation {
         };
 
         return rocketSpeeds;
+
+    }
+
+    // Store rocket fuel consumption rates (gal / h)
+    private static Double[] getRocketFuelConsumptionRates() {
+
+        var rocketFuelConsumptionRates = new Double[] {
+                80_000D,
+                100_000D,
+                70_000D,
+                120_000D,
+        };
+
+        return rocketFuelConsumptionRates;
 
     }
 }
