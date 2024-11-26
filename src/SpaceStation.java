@@ -53,11 +53,14 @@ public class SpaceStation {
     // INITIALIZE ROCKET INFORMATION
     private static String[] rocketNames = getRocketNames();
 
+    // Speeds given in km/h
+    private static Double[] rocketSpeeds = getRocketSpeeds();
+
     public static void main(String[] args) throws Exception {
 
         // Array creation test
-        for (String rocketName : rocketNames) {
-            System.out.println(rocketName + "\n");
+        for (Double rocketSpeed : rocketSpeeds) {
+            System.out.println(rocketSpeed + "\n");
         }
 
     }
@@ -139,6 +142,20 @@ public class SpaceStation {
         };
 
         return rocketNames;
+
+    }
+
+    // Store rocket speeds
+    private static Double[] getRocketSpeeds() {
+
+        var rocketSpeeds = new Double[] {
+                100_000D,
+                140_000D,
+                80_000D,
+                120_000D,
+        };
+
+        return rocketSpeeds;
 
     }
 }
