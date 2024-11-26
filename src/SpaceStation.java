@@ -72,10 +72,23 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Array creation test
-        for (Double rocketFuelTank : rocketFuelTanks) {
-            System.out.println(rocketFuelTank + "\n");
-        }
+        // Rocket fuel consumption test
+
+        // In the actual rocket selection, this number will be reduced by one
+        int rocketNumber = 1;
+
+        System.out.printf("%nInitial fuel gallons: %f gal%n", rocketFuelTanks[rocketNumber]);
+
+        double gallonsConsumed = 2_300_000D;
+        drainRocketFuelTank(rocketNumber, gallonsConsumed);
+
+        System.out.printf("%nUpdated fuel gallons: %f gal%n", rocketFuelTanks[rocketNumber]);
+
+        // Rocket fuel tank refill test
+
+        chargeRocketFuelTank(rocketNumber);
+
+        System.out.printf("%nFuel gallons after refill: %f gal%n", rocketFuelTanks[rocketNumber]);
 
     }
 
@@ -202,6 +215,12 @@ public class SpaceStation {
     }
 
     // --- ROCKET METHODS ---
+    // Consume fuel
+    private static void drainRocketFuelTank(int rocketNumber, Double gallonsConsumed) {
+
+        rocketFuelTanks[rocketNumber] -= gallonsConsumed;
+
+    }
 
     // TODO: (TEST) Charge rocket fuel tank
     private static void chargeRocketFuelTank(int rocketNumber) {
