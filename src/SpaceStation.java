@@ -50,11 +50,14 @@ public class SpaceStation {
 
     private static String[] planetInformation = getPlanetInformation();
 
+    // INITIALIZE ROCKET INFORMATION
+    private static String[] rocketNames = getRocketNames();
+
     public static void main(String[] args) throws Exception {
 
         // Array creation test
-        for (String info : planetInformation) {
-            System.out.println(info + "\n");
+        for (String rocketName : rocketNames) {
+            System.out.println(rocketName + "\n");
         }
 
     }
@@ -121,6 +124,21 @@ public class SpaceStation {
         };
 
         return planetInformation;
+
+    }
+
+    // --- ROCKET INFO INITIALIZATION ---
+    // Store rocket names
+    private static String[] getRocketNames() {
+
+        var rocketNames = new String[] {
+                "Stellar Voyager",
+                "Eclipse Arrow",
+                "Nebula Titan",
+                "Aurora Striker",
+        };
+
+        return rocketNames;
 
     }
 }
