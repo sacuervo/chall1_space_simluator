@@ -1,4 +1,3 @@
-
 // TODO:ALMACENAR INFORMACIÓN
 
 // TODO:IMPLEMENTAR MENÚ PRINCIPAL:
@@ -24,7 +23,7 @@
 // TODO:Mostrar etapas clave del viaje(inicio,mitad y llegada al destino)
 // TODO:Generar un número aleatorio y contrastarlo con un una condición que signifique la ocurrencia de un evento inesperado
 
-import java.util.Arrays;
+import java.text.DecimalFormat;
 
 public class SpaceStation {
 
@@ -33,6 +32,8 @@ public class SpaceStation {
      * This is done to avoid code repetition when passing arguments to auxiliary
      * functions.
      */
+
+    private static DecimalFormat fuelAndDistanceAmountFormatter = new DecimalFormat("#,###.##");
 
     /*
      * WHY USE ARRAYS INSTEAD OF ARRAYLISTS?
@@ -72,23 +73,8 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Rocket fuel consumption test
-
-        // In the actual rocket selection, this number will be reduced by one
-        int rocketNumber = 1;
-
-        System.out.printf("%nInitial fuel gallons: %f gal%n", rocketFuelTanks[rocketNumber]);
-
-        double gallonsConsumed = 2_300_000D;
-        drainRocketFuelTank(rocketNumber, gallonsConsumed);
-
-        System.out.printf("%nUpdated fuel gallons: %f gal%n", rocketFuelTanks[rocketNumber]);
-
-        // Rocket fuel tank refill test
-
-        chargeRocketFuelTank(rocketNumber);
-
-        System.out.printf("%nFuel gallons after refill: %f gal%n", rocketFuelTanks[rocketNumber]);
+        // Print rocket information test
+        getRocketsInfo();
 
     }
 
@@ -222,10 +208,40 @@ public class SpaceStation {
 
     }
 
-    // TODO: (TEST) Charge rocket fuel tank
+    // Charge rocket fuel tank
     private static void chargeRocketFuelTank(int rocketNumber) {
 
         rocketFuelTanks[rocketNumber] = rocketFuelTankCapacities[rocketNumber];
+
+    }
+
+    // --- PRINT INFORMATION IN CONSOLE ---
+
+    private static void getRocketsInfo() {
+
+        System.out.printf("%n--- OUR ROCKETS ---%n");
+
+        System.out.println();
+        System.out.println(
+                """
+                        \s\s\s\s\s\s\s/\\            /\\            /\\            /\\\n      /  \\          /  \\          /  \\          /  \\\n     / || \\        / || \\        / || \\        / || \\\n    /  ||  \\      /  ||  \\      /  ||  \\      /  ||  \\\n   /___||___\\    /___||___\\    /___||___\\    /___||___\\\n      |  |          |  |          |  |          |  |\n     /_||_\\        /_||_\\        /_||_\\        /_||_\\\n    |______|      |______|      |______|      |______|\n      ||||          ||||          ||||          ||||\n      ||||          ||||          ||||          ||||\n     (----)        (----)        (----)        (----)\n      ====          ====          ====          ====\n     |    |        |    |        |    |        |    |\n    /______\\      /______\\      /______\\      /______\\\n
+                                """);
+
+        for (int i = 0; i < rocketNames.length; i++) {
+            // Show rocket name
+            System.out.printf("%n*** %d. %s ***%n", i + 1, rocketNames[i]);
+
+            // Show rocket tank capacity
+            System.out.printf("Total fuel tank capacity: %s gal%n",
+                    fuelAndDistanceAmountFormatter.format(rocketFuelTankCapacities[i]));
+
+            // Show fuel consumption rate
+            System.out.printf("Fuel consumption rate: %s gal/h%n",
+                    fuelAndDistanceAmountFormatter.format(rocketFuelConsumptionRates[i]));
+            System.out.printf("Speed: %s km/h%n", fuelAndDistanceAmountFormatter.format(rocketSpeeds[i]));
+        }
+
+        System.out.println("\n---------------------");
 
     }
 
