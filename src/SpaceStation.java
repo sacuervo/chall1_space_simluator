@@ -316,8 +316,8 @@ public class SpaceStation {
     // |\n\\__|__/\\_____/\\__|\\_/\\___//_____|\\_____/\\__|__/<_____/
     // """);
 
-    // var welcomeMessage = "Welcome to Stellar Horizons!\nPlease select and option:
-    // ";
+    // var welcomeMessage = "Welcome to Stellar Horizons!\nPlease select and
+    // option:";
 
     // // Ask for user input
     // /*
@@ -364,6 +364,21 @@ public class SpaceStation {
 
     // }
 
+    private static void exploreDestinations() {
+        getPlanetsInfo();
+
+        System.out.println();
+
+        var travelNow = askYesOrNo("Would you like to travel now?");
+
+        if (travelNow == 1) {
+            travelNow();
+        }
+
+    }
+
+    // --- REQUEST USER INPUT ---
+    // Mutliple choice question
     private static int askMultipleChoiceQuestion(String message, String[] options) {
 
         var answer = 0;
