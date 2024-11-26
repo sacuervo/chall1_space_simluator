@@ -67,14 +67,14 @@ public class SpaceStation {
      * getRocketFuelTankCapacities() also works to initialize this variable
      * Not final. Values will be modified.
      */
-    private static Double 
+    private static Double[] rocketFuelTanks = getRocketFuelTankCapacities();
 
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
         // Array creation test
-        for (Double rocketFuelTankCapacity : rocketFuelTankCapacities) {
-            System.out.println(rocketFuelTankCapacity + "\n");
+        for (Double rocketFuelTank : rocketFuelTanks) {
+            System.out.println(rocketFuelTank + "\n");
         }
 
     }
