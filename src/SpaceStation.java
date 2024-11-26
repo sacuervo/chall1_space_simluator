@@ -35,6 +35,8 @@ public class SpaceStation {
 
     private static DecimalFormat fuelAndDistanceAmountFormatter = new DecimalFormat("#,###.##");
 
+    private static DecimalFormat percentageFormatter = new DecimalFormat("#.##");
+
     /*
      * WHY USE ARRAYS INSTEAD OF ARRAYLISTS?
      * Arrays are more space efficient than ArrayLists
@@ -73,9 +75,27 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Print rocket information test
-        getRocketsInfo();
+        // Get rocket fuel tank level test
 
+        int rocketNumber = 1;
+
+        // Get initial level
+        System.out.printf("%nInitial fuel level: %s%%%n",
+                percentageFormatter.format(getRocketFuelTankLevel(rocketNumber)));
+
+        // Consume fuel
+        drainRocketFuelTank(rocketNumber, 3_600_000D);
+
+        // Get final fuel level
+        System.out.printf("%nFinal fuel level: %s%%%n",
+                percentageFormatter.format(getRocketFuelTankLevel(rocketNumber)));
+
+        /*
+         * Initial gallons: 8_500_000
+         * Final gallons: 4_900_000
+         * Percentage calculation (expected final fuel level): (4_900_000 / 8_500_000) *
+         * 100 = 57.65%
+         */
     }
 
     // --- PLANET INFO INITIALIZATION ---
@@ -212,6 +232,13 @@ public class SpaceStation {
     private static void chargeRocketFuelTank(int rocketNumber) {
 
         rocketFuelTanks[rocketNumber] = rocketFuelTankCapacities[rocketNumber];
+
+    }
+
+    // Get rocket fuel tank level (as a %)
+    private static double getRocketFuelTankLevel(int rocketNumber) {
+
+        return rocketFuelTanks[rocketNumber] / rocketFuelTankCapacities[rocketNumber] * 100;
 
     }
 
