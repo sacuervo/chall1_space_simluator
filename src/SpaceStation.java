@@ -200,4 +200,14 @@ public class SpaceStation {
         return rocketFuelTankCapacities;
 
     }
+
+    // --- ROCKET METHODS ---
+
+    // TODO: (TEST) Charge rocket fuel tank
+    private static void chargeRocketFuelTank(int rocketNumber) {
+
+        rocketFuelTanks[rocketNumber] = rocketFuelTankCapacities[rocketNumber];
+
+    }
+
 }
