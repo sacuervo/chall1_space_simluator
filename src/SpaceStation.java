@@ -24,8 +24,39 @@
 // TODO:Mostrar etapas clave del viaje(inicio,mitad y llegada al destino)
 // TODO:Generar un número aleatorio y contrastarlo con un una condición que signifique la ocurrencia de un evento inesperado
 
-public class App {
+import java.util.Arrays;
+
+public class SpaceStation {
+
+    /*
+     * INITIALIZE STATIC ATTRIBUTES
+     * This is done to avoid code repetition when passing arguments to auxiliary
+     * functions.
+     */
+
+    /*
+     * WHY USE ARRAYS INSTEAD OF ARRAYLISTS?
+     * Arrays are more space efficient than ArrayLists
+     * No insertion or deletion will be required
+     * We have fixed element amounts
+     */
+
+    private static String[] menuOptions = initializeMainMenuOptions();
+
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+
+        // Array creation test
+        System.out.printf("Menu options: %s%n", Arrays.toString(menuOptions));
+
+    }
+
+    // --- INFO INITIALIZATION ---
+    // Store main menu options
+    private static String[] initializeMainMenuOptions() {
+
+        var mainMenuOptions = new String[] { "Explore destinations", "See our rockets", "Travel now", "Exit" };
+
+        return mainMenuOptions;
+
     }
 }
