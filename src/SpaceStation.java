@@ -41,16 +41,21 @@ public class SpaceStation {
      * We have fixed element amounts
      */
 
+    // INITIALIZE PLANET INFORMATION
     private static String[] menuOptions = getMainMenuOptions();
 
     private static String[] planetNames = getPlanetNames();
 
     private static Double[] planetDistances = getPlanetDistances();
 
+    private static String[] planetInformation = getPlanetInformation();
+
     public static void main(String[] args) throws Exception {
 
         // Array creation test
-        System.out.printf("Planet distances: %s%n", Arrays.toString(planetDistances));
+        for (String info : planetInformation) {
+            System.out.println(info + "\n");
+        }
 
     }
 
@@ -99,6 +104,23 @@ public class SpaceStation {
         };
 
         return planetDistances;
+
+    }
+
+    // Store planet information
+    private static String[] getPlanetInformation() {
+
+        var planetInformation = new String[] {
+                "Visitors may witness diamond rains in Neptune",
+                "Uranus was the first planet to be discovered by a telescope.",
+                "Saturn has 146 moons in orbit, more than any other planet in our Solar System.",
+                "Jupiter is the biggest planet in our Solar System.",
+                "One day in Mercury is almost two-thirds of a year.",
+                "Mars' shield volcano 'Olympus Mons' is about 2.5 times as high as Mt. Everest.",
+                "A Venus day (243 days) lasts longer than a year (225 days)."
+        };
+
+        return planetInformation;
 
     }
 }
