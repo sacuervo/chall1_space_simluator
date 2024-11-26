@@ -75,27 +75,9 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Get rocket fuel tank level test
+        // Print rockets information test
+        getRocketsInfo();
 
-        int rocketNumber = 1;
-
-        // Get initial level
-        System.out.printf("%nInitial fuel level: %s%%%n",
-                percentageFormatter.format(getRocketFuelTankLevel(rocketNumber)));
-
-        // Consume fuel
-        drainRocketFuelTank(rocketNumber, 3_600_000D);
-
-        // Get final fuel level
-        System.out.printf("%nFinal fuel level: %s%%%n",
-                percentageFormatter.format(getRocketFuelTankLevel(rocketNumber)));
-
-        /*
-         * Initial gallons: 8_500_000
-         * Final gallons: 4_900_000
-         * Percentage calculation (expected final fuel level): (4_900_000 / 8_500_000) *
-         * 100 = 57.65%
-         */
     }
 
     // --- PLANET INFO INITIALIZATION ---
@@ -261,6 +243,9 @@ public class SpaceStation {
             // Show rocket tank capacity
             System.out.printf("Total fuel tank capacity: %s gal%n",
                     fuelAndDistanceAmountFormatter.format(rocketFuelTankCapacities[i]));
+
+            // Show rocket fuel tank level
+            System.out.printf("Fuel tank level: %s%%%n", getRocketFuelTankLevel(i));
 
             // Show fuel consumption rate
             System.out.printf("Fuel consumption rate: %s gal/h%n",
