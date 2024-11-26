@@ -45,10 +45,12 @@ public class SpaceStation {
 
     private static String[] planetNames = getPlanetNames();
 
+    private static Double[] planetDistances = getPlanetDistances();
+
     public static void main(String[] args) throws Exception {
 
         // Array creation test
-        System.out.printf("Planet names: %s%n", Arrays.toString(planetNames));
+        System.out.printf("Planet distances: %s%n", Arrays.toString(planetDistances));
 
     }
 
@@ -67,6 +69,7 @@ public class SpaceStation {
 
     }
 
+    // Store planet names
     private static String[] getPlanetNames() {
 
         var planetNames = new String[] {
@@ -82,4 +85,20 @@ public class SpaceStation {
         return planetNames;
     }
 
+    // Store planet distances. Stored as doubles to facilitate future calculations
+    private static Double[] getPlanetDistances() {
+
+        var planetDistances = new Double[] {
+                4_311_020_000D,
+                2_586_880_000D,
+                1_204_280_000D,
+                591_970_000D,
+                82_500_000D,
+                55_650_000D,
+                39_790_000D
+        };
+
+        return planetDistances;
+
+    }
 }
