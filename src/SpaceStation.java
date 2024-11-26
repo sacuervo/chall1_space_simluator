@@ -43,10 +43,12 @@ public class SpaceStation {
 
     private static String[] menuOptions = initializeMainMenuOptions();
 
+    private static String[] planetNames = initializePlanetNames();
+
     public static void main(String[] args) throws Exception {
 
         // Array creation test
-        System.out.printf("Menu options: %s%n", Arrays.toString(menuOptions));
+        System.out.printf("Planet names: %s%n", Arrays.toString(planetNames));
 
     }
 
@@ -54,9 +56,29 @@ public class SpaceStation {
     // Store main menu options
     private static String[] initializeMainMenuOptions() {
 
-        var mainMenuOptions = new String[] { "Explore destinations", "See our rockets", "Travel now", "Exit" };
+        var mainMenuOptions = new String[] {
+                "Explore destinations",
+                "See our rockets",
+                "Travel now",
+                "Exit",
+        };
 
         return mainMenuOptions;
 
+    }
+
+    private static String[] initializePlanetNames() {
+
+        var planetNames = new String[] {
+                "Neptune",
+                "Uranus",
+                "Saturn",
+                "Jupiter",
+                "Mercury",
+                "Mars",
+                "Venus",
+        };
+
+        return planetNames;
     }
 }
