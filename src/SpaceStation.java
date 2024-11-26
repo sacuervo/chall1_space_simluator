@@ -41,9 +41,9 @@ public class SpaceStation {
      * We have fixed element amounts
      */
 
-    private static String[] menuOptions = initializeMainMenuOptions();
+    private static String[] menuOptions = getMainMenuOptions();
 
-    private static String[] planetNames = initializePlanetNames();
+    private static String[] planetNames = getPlanetNames();
 
     public static void main(String[] args) throws Exception {
 
@@ -52,9 +52,9 @@ public class SpaceStation {
 
     }
 
-    // --- INFO INITIALIZATION ---
+    // --- PLANET INFO INITIALIZATION ---
     // Store main menu options
-    private static String[] initializeMainMenuOptions() {
+    private static String[] getMainMenuOptions() {
 
         var mainMenuOptions = new String[] {
                 "Explore destinations",
@@ -67,7 +67,7 @@ public class SpaceStation {
 
     }
 
-    private static String[] initializePlanetNames() {
+    private static String[] getPlanetNames() {
 
         var planetNames = new String[] {
                 "Neptune",
@@ -81,4 +81,5 @@ public class SpaceStation {
 
         return planetNames;
     }
+
 }
