@@ -80,16 +80,8 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Test initial travelNow() value requests
-        // GOTO: line 395
+        // Test travelNow() pre-journey loop variable initialization
         travelNow();
-
-        /*
-         * Shouldn't accept values greater than the corresponding array lengths
-         * Shouldn't accept non-integer values
-         * Should reduce the input values by 1
-         * Rocket fuel level should be 100
-         */
 
     }
 
@@ -389,36 +381,54 @@ public class SpaceStation {
 
     private static void travelNow() {
 
-        // TODO: Select destination
+        // Select destination
         var destinationNumber = askMultipleChoiceQuestion("Select destination:", planetNames) - 1;
 
-        // TODO: Select rocket
+        // Select rocket
         getRocketsInfo(); // Show all rockets' info
         var rocketNumber = askMultipleChoiceQuestion("Select your rocket:, ",
                 rocketNames) - 1;
 
-        // TODO: Perform pre-launch rocket fuel level check
+        // Perform pre-launch rocket fuel level check
         performRocketFuelCheck(rocketNumber);
 
-        // TODO: Request passenger number
+        // Request passenger number
         var numberOfPassengers = requestPositiveIntegerValue("\nHow many passengers will be on board?: ");
 
-        // TODO: Calculate estimated travel time
+        // Calculate overall travel distance
         var travelDistance = planetDistances[destinationNumber] * 2; // Round trip (planet distance * 2)
+
+        // Calculate estimated travel time
 
         var rocketSpeed = rocketSpeeds[rocketNumber];
 
         var estimatedTravelTime = travelDistance / rocketSpeed;
 
-        // TODO: Display estimated travel time
+        // Display estimated travel time
 
         System.out.printf("%nEstimated travel time (round trip): %s.%n", processTime(estimatedTravelTime));
 
-        // TODO: Calculate overall travel distance
+        // Show destination planet info
 
-        // TODO: Show overall travel distance
+        // Store destiantion planet name
+        var destinationPlanetName = planetNames[destinationNumber];
 
-        // TODO: Show destination planet info
+        // Store rocket name
+        var spaceship = rocketNames[rocketNumber];
+
+        // Store destination planet information
+        var destinationPlanetInformation = planetInformation[destinationNumber];
+
+        // Display launch message in console
+        System.out.println(numberOfPassengers + " passengers are on board and ready.");
+        System.out.println("Off we go!");
+        System.out.println(
+                """
+                                                               _,\'/\n                                  _.-\'\'._:\n                          ,-:`-.-\'    .:.|\n                         ;-.\'\'       .::.|\n          _..------.._  / (:.       .:::.|\n       ,\'.   .. . .  .`/  : :.     .::::.|\n     ,\'. .    .  .   ./    \\ ::. .::::::.|\n   ,\'. .  .    .   . /      `.,,::::::::.;\\\n  /  .            . /       ,\',\';_::::::,:_:\n / . .  .   .      /      ,\',\',\'::`--\'\':;._;\n: .             . /     ,\',\',\':::::::_:\'_,\'\n|..  .   .   .   /    ,\',\',\'::::::_:\'_,\'\n|.              /,-. /,\',\':::::_:\'_,\'\n| ..    .    . /) /-:/,\'::::_:\',-\'\n: . .     .   // / ,\'):::_:\',\' ;\n \\ .   .     // /,\' /,-.\',\'  ./\n  \\ . .  `::./,// ,\'\' ,\'   . /\n   `. .   . `;;;,/_.\'\' . . ,\'\n    ,`. .   :;;\' `:.  .  ,\'\n   /   `-._,\'  ..  ` _.-\'\n  (     _,\'``------\'\' \n   `--\'\'
+                        """);
+
+        System.out.printf("%n%nDestination planet: %s%nSpaceship: %s%n%s%n", destinationPlanetName, spaceship,
+                destinationPlanetInformation);
 
         // TODO: Implement the journey in a nested loop
 
