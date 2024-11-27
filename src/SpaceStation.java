@@ -79,8 +79,16 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Test yes-or-no question
-        askYesOrNo("Test question: ");
+        // Test initial travelNow() value requests
+        // GOTO: line 395
+        travelNow();
+
+        /*
+         * Shouldn't accept values greater than the corresponding array lengths
+         * Shouldn't accept non-integer values
+         * Should reduce the input values by 1
+         * Rocket fuel level should be 100
+         */
 
     }
 
@@ -381,14 +389,41 @@ public class SpaceStation {
     private static void travelNow() {
 
         // TODO: Select destination
+        var destinationNumber = askMultipleChoiceQuestion("Select destination:", planetNames) - 1;
+
         // TODO: Select rocket
+        getRocketsInfo(); // Show all rockets' info
+        var rocketNumber = askMultipleChoiceQuestion("Select your rocket:, ",
+                rocketNames) - 1;
+
         // TODO: Perform pre-launch rocket fuel level check
+        performRocketFuelCheck(rocketNumber);
+
+        // TEST: destinationNumber, rocketNumber, and performRocketFuelCheck
+        System.out.println("Destination planet number " + destinationNumber);
+        System.out.println("Rocket number: " + rocketNumber);
+        System.out.println("Rocket fuel level: " + getRocketFuelTankLevel(rocketNumber));
+
         // TODO: Request passenger number
         // TODO: Calculated estimated travel time
         // TODO: Show destination planet info
         // TODO: Implement the journey in a nested loop
 
     }
+
+    // --- AUXILIARY FUNCTIONS ---
+    private static void performRocketFuelCheck(int rocketNumber) {
+        if (getRocketFuelTankLevel(rocketNumber) < 100) {
+
+            // Refill fuel tank
+            System.out.printf("Your rocket's fuel tank is at %s%%. We'll fill it up before you launch.%n",
+                    percentageFormatter.format(getRocketFuelTankLevel(rocketNumber)));
+
+            chargeRocketFuelTank(rocketNumber);
+        } else {
+            System.out.println("Your rocket's ready to launch.");
+        }
+    };
 
     // --- REQUEST USER INPUT ---
     // Mutliple choice question
