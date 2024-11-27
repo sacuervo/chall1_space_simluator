@@ -1,28 +1,3 @@
-// TODO:ALMACENAR INFORMACIÓN
-
-// TODO:IMPLEMENTAR MENÚ PRINCIPAL:
-// TODO:Opción 1:Seleccionar planeta 
-// TODO:Opción 2:Elegir una nave 
-// TODO:Opción 3:Iniciar viaje 
-// TODO:Opción 4:Salir del programa
-
-// TODO:IMPLEMENTAR SELECCIÓN DE PLANETA:
-// TODO:Mostrar distancia 
-// TODO:Mostrar breve descripción del planeta
-
-// TODO:ADMINISTRAR RECURSOS DE LA NAVE
-
-// TODO:IMPLEMENTAR EVENTOS ALEATORIOS EN EL VIAJE 
-// TODO:Mostrar descripción del evento 
-// TODO:Darle opciones al usuario de cómo afrontarlo
-
-// TODO:IMPLEMENTAR SIMULACIÓN DEL VIAJE 
-// TODO:Calcular duración del viaje estimada en días 
-// TODO:Calcular progreso del viaje mediante bucles básicos 
-
-// TODO:Mostrar etapas clave del viaje(inicio,mitad y llegada al destino)
-// TODO:Generar un número aleatorio y contrastarlo con un una condición que signifique la ocurrencia de un evento inesperado
-
 package spacestation;
 
 import java.text.DecimalFormat;
@@ -80,8 +55,7 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Test travelNow() travel loop implementation
-        travelNow();
+        runMainMenu();
 
     }
 
@@ -298,86 +272,81 @@ public class SpaceStation {
 
     // --- MAIN MENU IMPLEMENTATION ---
     // Run main menu
-    // private static void runMainMenu() {
+    private static void runMainMenu() {
 
-    // // Initiate flag
-    // var isExecutingMenu = true;
+        // Initiate flag
+        var isExecutingMenu = true;
 
-    // while (isExecutingMenu) {
+        while (isExecutingMenu) {
 
-    // // Welcome user
-    // System.out.println();
-    // System.out.println(
-    // """
-    // \s_____ ____ _____ ____ ____ _____ _____ \n/ ___>/ \\/ __\\/ _/ / _/ / _ \\/
-    // _ \\ \n|___ |\\- -/| __|| |---| |---| _ || _ < \n<_____/ |__|
-    // \\_____/\\_____/\\_____/\\__|__/\\__|\\_/ \n \n __ __ _____ _____ ___ _____
-    // _____ _____ _____ \n/ | \\/ _ \\/ _ \\/___\\|__ // _ \\/ _ \\/ ___>\n| _ || |
-    // || _ <| | / _/ | | || | ||___
-    // |\n\\__|__/\\_____/\\__|\\_/\\___//_____|\\_____/\\__|__/<_____/
-    // """);
+            // Welcome user
+            System.out.println();
+            System.out.println(
+                    """
+                            \s_____  ____  _____  ____   ____   _____  _____       \n/  ___>/    \\/   __\\/  _/  /  _/  /  _  \\/  _  \\      \n|___  |\\-  -/|   __||  |---|  |---|  _  ||  _  <      \n<_____/ |__| \\_____/\\_____/\\_____/\\__|__/\\__|\\_/      \n                                                      \n __ __  _____  _____  ___  _____  _____  _____  _____ \n/  |  \\/  _  \\/  _  \\/___\\|__   //  _  \\/  _  \\/  ___>\n|  _  ||  |  ||  _  <|   | /  _/ |  |  ||  |  ||___  |\n\\__|__/\\_____/\\__|\\_/\\___//_____|\\_____/\\__|__/<_____/
+                                              """);
 
-    // var welcomeMessage = "Welcome to Stellar Horizons!\nPlease select and
-    // option:";
+            var welcomeMessage = "Welcome to Stellar Horizons!\nPlease select an option:";
 
-    // // Ask for user input
-    // /*
-    // * TODO: Implement askMultipleChoiceQuestion()
-    // * Only integers are allowed
-    // * Only positive values are allowed
-    // * Handle non-numeric inputs
-    // */
-    // var mainMenuSelection = askMultipleChoiceQuestion(welcomeMessage,
-    // menuOptions);
+            // Ask for user input
+            /*
+             * TODO: Implement askMultipleChoiceQuestion()
+             * Only integers are allowed
+             * Only positive values are allowed
+             * Handle non-numeric inputs
+             */
+            var mainMenuSelection = askMultipleChoiceQuestion(welcomeMessage,
+                    menuOptions);
 
-    // // React to user input
-    // switch (mainMenuSelection) {
-    // case 1:
-    // /*
-    // * TODO: Implement exploreDestinations()
-    // * Shows all the planets' information
-    // * Asks user if they want to travel;
-    // * executes travelNow() if they do.
-    // */
-    // exploreDestinations();
-    // break;
-    // case 2:
-    // getRocketsInfo();
-    // break;
-    // case 3:
-    // /*
-    // * TODO: Implement travelNow()
-    // */
-    // travelNow();
-    // break;
-    // case 4:
-    // // Exits menu and ends aplication if user selects '4'
-    // isExecutingMenu = false;
-    // System.out.println("Until next time!\n");
-    // break;
-    // default:
-    // System.err.println("Invalid option.");
-    // isExecutingMenu = false;
-    // break;
-    // }
+            // React to user input
+            switch (mainMenuSelection) {
+                case 1:
+                    /*
+                     * TODO: Implement exploreDestinations()
+                     * Shows all the planets' information
+                     * Asks user if they want to travel;
+                     * executes travelNow() if they do.
+                     */
+                    exploreDestinations();
+                    break;
+                case 2:
+                    getRocketsInfo();
+                    break;
+                case 3:
+                    /*
+                     * TODO: Implement travelNow()
+                     */
+                    travelNow();
+                    break;
+                case 4:
+                    // Exits menu and ends aplication if user selects '4'
+                    isExecutingMenu = false;
+                    System.out.println("Until next time!\n");
+                    break;
+                default:
+                    System.err.println("Invalid option.");
+                    isExecutingMenu = false;
+                    break;
+            }
 
-    // }
+        }
 
-    // }
+    }
 
-    // TODO: (Finish) Explore destinations menu option
-    // private static void exploreDestinations() {
-    // getPlanetsInfo();
+    // Explore destination menu option
 
-    // System.out.println();
+    private static void exploreDestinations() {
+        getPlanetsInfo();
 
-    // var travelNow = askYesOrNo("Would you like to travel now?");
+        System.out.println();
 
-    // if (travelNow == 1) {
-    // travelNow();
-    // }
+        var travelNow = askYesOrNo("Would you like to travel now?");
 
-    // }
+        if (travelNow == 1) {
+            travelNow();
+        }
+
+    }
 
     private static void travelNow() {
 
@@ -434,7 +403,7 @@ public class SpaceStation {
         var overallTimeElapsed = 0D;
         var overallDistanceCovered = 0D;
 
-        // Initializeweek counter
+        // Initialize week counter
         var weekCounter = 1;
 
         // Initialize rocket variables to avoid code duplication
@@ -459,6 +428,7 @@ public class SpaceStation {
 
             // Show time elapsed
             System.out.printf("Time elapsed: %s%n", processTime(overallTimeElapsed));
+
             // Show fuel level
             System.out.printf("Fuel level: %s%%%n",
                     percentageFormatter.format(rocketFuelTankCapacity / rocketFuelTank * 100));
@@ -479,6 +449,7 @@ public class SpaceStation {
 
                 // Check if fuel is enough for the next day
                 if (isFuelEnoughForNextDay(rocketFuelConsumptionRate, rocketFuelTank)) {
+                    // Evaluate if its the last journey day
                     if (missingTravelDistance <= possibleDailyDistanceCoverage) {
                         dailyTimeTraveled = missingTravelDistance / rocketSpeed;
                         dailyDistanceCoverage = missingTravelDistance;
@@ -498,13 +469,16 @@ public class SpaceStation {
                     System.out.printf("%n%s gal were spent going to closest gas station.%n",
                             fuelAndDistanceAmountFormatter.format(dailyFuelConsumption));
                     goToGasStation(rocketNumber);
+                    rocketFuelTank = rocketFuelTankCapacities[rocketNumber];
                 }
 
                 // Consume fuel each day and increase overall fuel consumed
-                drainRocketFuelTank(rocketNumber, dailyFuelConsumption);
+                rocketFuelTank -= dailyFuelConsumption;
+                overallFuelConsumed += dailyFuelConsumption;
 
                 // Increase overall distance covered
                 overallDistanceCovered += dailyDistanceCoverage;
+
                 // Increase overall time elapsed each day
                 overallTimeElapsed += dailyTimeTraveled;
 
@@ -535,6 +509,14 @@ public class SpaceStation {
 
         // Show time elapsed
         System.out.printf("Time elapsed: %s%n", processTime(overallTimeElapsed));
+
+        // Show fuel level
+        System.out.printf("Fuel level: %s%%%n",
+                percentageFormatter.format(rocketFuelTank / rocketFuelTankCapacity * 100));
+
+        // Show total amount of fuel gallons consumed
+        System.out.printf("Fuel gallons consumed: %s gal%n",
+                fuelAndDistanceAmountFormatter.format(overallFuelConsumed));
 
         // Finish journey
         landOnEarth(rocketNumber);
