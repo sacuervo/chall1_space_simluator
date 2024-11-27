@@ -56,7 +56,7 @@
    - Store random event data similarly to rocket and planet data.
    - Use regular arrays to store event descriptions, survival probability, tasks, number of attempts, and the chance of success per event with `Random.nextInt(10)`.
    - Base success on individual probability, contrasting the result with a range number between 1 and some other number depending on the chance of success.
-2. ** Add ASCII art in case of random event resolution failure to represent the death of the tribulation.
+2. **Add ASCII art in case of random event resolution failure to represent the death of the tripulation**
 
 ---
 
