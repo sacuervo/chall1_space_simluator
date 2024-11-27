@@ -80,7 +80,7 @@ public class SpaceStation {
     // ------ MAIN ------
     public static void main(String[] args) throws Exception {
 
-        // Test travelNow() pre-journey loop variable initialization
+        // Test travelNow() travel loop implementation
         travelNow();
 
     }
@@ -405,7 +405,6 @@ public class SpaceStation {
         var estimatedTravelTime = travelDistance / rocketSpeed;
 
         // Display estimated travel time
-
         System.out.printf("%nEstimated travel time (round trip): %s.%n", processTime(estimatedTravelTime));
 
         // Show destination planet info
@@ -430,8 +429,6 @@ public class SpaceStation {
         System.out.printf("%n%nDestination planet: %s%nSpaceship: %s%n%s%n", destinationPlanetName, spaceship,
                 destinationPlanetInformation);
 
-        // TODO: Implement the journey in a nested loop
-
         // Initialize trackers
         var overallFuelConsumed = 0D;
         var overallTimeElapsed = 0D;
@@ -447,20 +444,23 @@ public class SpaceStation {
 
         var possibleDailyDistanceCoverage = 24 * rocketSpeed;
 
-        // TODO: Implement journey loop
+        // Implement journey loop
         while (overallDistanceCovered != travelDistance) {
+
             // Show week number
             System.out.printf("%nWEEK %d - PRELIMINARY REPORT%n", weekCounter);
+
             // Show journey percentage covered
             System.out.printf("Journey %% covered: %s%%%n",
                     overallTimeElapsed != 0 ? percentageFormatter.format(overallDistanceCovered / travelDistance * 100)
                             : "0%");
             // Show distance covered
             System.out.printf("Distance covered: %s%n", fuelAndDistanceAmountFormatter.format(overallDistanceCovered));
+
             // Show time elapsed
             System.out.printf("Time elapsed: %s%n", processTime(overallTimeElapsed));
             // Show fuel level
-            System.out.printf("Fuel level: %s%n%%",
+            System.out.printf("Fuel level: %s%%%n",
                     percentageFormatter.format(rocketFuelTankCapacity / rocketFuelTank * 100));
 
             // Create inner loop that represents days in a week
@@ -492,7 +492,6 @@ public class SpaceStation {
                     // If there's not enough fuel to cover current and next day, go to fuel station
                     // Simulate spending 10% of remaining fuel going to closest fuel station.
                     dailyFuelConsumption = 0.1 * rocketFuelTank;
-                    rocketFuelTank -= 0.1 * rocketFuelTank;
                     dailyTimeTraveled = 24;
 
                     // Print fuel spent going to the gas station
@@ -502,9 +501,7 @@ public class SpaceStation {
                 }
 
                 // Consume fuel each day and increase overall fuel consumed
-                overallFuelConsumed += dailyFuelConsumption;
-
-                rocketFuelTank -= dailyFuelConsumption;
+                drainRocketFuelTank(rocketNumber, dailyFuelConsumption);
 
                 // Increase overall distance covered
                 overallDistanceCovered += dailyDistanceCoverage;
@@ -527,6 +524,20 @@ public class SpaceStation {
 
         }
 
+        // Print final report
+        System.out.println("\n\n--- FINAL REPORT ---");
+        // Show journey percentage covered
+        System.out.printf("Journey %% covered: %s%%%n",
+                overallTimeElapsed != 0 ? percentageFormatter.format(overallDistanceCovered / travelDistance * 100)
+                        : "0%");
+        // Show distance covered
+        System.out.printf("Distance covered: %s%n", fuelAndDistanceAmountFormatter.format(overallDistanceCovered));
+
+        // Show time elapsed
+        System.out.printf("Time elapsed: %s%n", processTime(overallTimeElapsed));
+
+        // Finish journey
+        landOnEarth(rocketNumber);
     }
 
     // --- AUXILIARY FUNCTIONS ---
@@ -600,6 +611,22 @@ public class SpaceStation {
 
         return rocketFuelTanks[rocketNumber];
 
+    }
+
+    // Land on earth
+    private static void landOnEarth(int rocketNumber) {
+        System.out.println("\n*** WELCOME HOME! ***\n");
+        System.out.println(
+                """
+                                     _-o#&&*\'\'\'\'?d:>b\\_\n          _o/\"`\'\'  \'\',, dMF9MMMMMHo_\n       .o&#\'        `\"MbHMMMMMMMMMMMHo.\n     .o\"\" \'         vodM*$&&HMMMMMMMMMM?.\n    ,\'              $M&ood,~\'`(&##MMMMMMH\\\n   /               ,MMMMMMM#b?#bobMMMMHMMML\n  &              ?MMMMMMMMMMMMMMMMM7MMM$R*Hk\n ?$.            :MMMMMMMMMMMMMMMMMMM/HMMM|`*L\n|               |MMMMMMMMMMMMMMMMMMMMbMH\'   T,\n$H#:            `*MMMMMMMMMMMMMMMMMMMMb#}\'  `?\n]MMH#             \"\"*\"\"\"\"*#MMMMMMMMMMMMM\'    -\nMMMMMb_                   |MMMMMMMMMMMP\'     :\nHMMMMMMMHo                 `MMMMMMMMMT       .\n?MMMMMMMMP                  9MMMMMMMM}       -\n-?MMMMMMM                  |MMMMMMMMM?,d-    \'\n :|MMMMMM-                 `MMMMMMMT .M|.   :\n  .9MMM[                    &MMMMM*\' `\'    .\n   :9MMk                    `MMM#\"        -\n     &M}                     `          .-\n      `&.                             .\n        `~,   .                     ./\n            . _                  .-\n              \'`--._,dd###pp=\"\"\'
+                        """);
+
+        System.out.println("\nThank you all for travelling with us! We hope you've had a wonderful experience.\n");
+
+        chargeRocketFuelTank(rocketNumber);
+
+        System.out.println(
+                rocketNames[rocketNumber] + " was charged and is now ready for the next group of adventurers.");
     }
 
     // --- REQUEST USER INPUT ---
