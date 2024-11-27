@@ -432,6 +432,101 @@ public class SpaceStation {
 
         // TODO: Implement the journey in a nested loop
 
+        // Initialize trackers
+        var overallFuelConsumed = 0D;
+        var overallTimeElapsed = 0D;
+        var overallDistanceCovered = 0D;
+
+        // Initializeweek counter
+        var weekCounter = 1;
+
+        // Initialize rocket variables to avoid code duplication
+        var rocketFuelTank = rocketFuelTanks[rocketNumber];
+        var rocketFuelTankCapacity = rocketFuelTankCapacities[rocketNumber];
+        var rocketFuelConsumptionRate = rocketFuelConsumptionRates[rocketNumber];
+
+        var possibleDailyDistanceCoverage = 24 * rocketSpeed;
+
+        // TODO: Implement journey loop
+        while (overallDistanceCovered != travelDistance) {
+            // Show week number
+            System.out.printf("%nWEEK %d - PRELIMINARY REPORT%n", weekCounter);
+            // Show journey percentage covered
+            System.out.printf("Journey %% covered: %s%%%n",
+                    overallTimeElapsed != 0 ? percentageFormatter.format(overallDistanceCovered / travelDistance * 100)
+                            : "0%");
+            // Show distance covered
+            System.out.printf("Distance covered: %s%n", fuelAndDistanceAmountFormatter.format(overallDistanceCovered));
+            // Show time elapsed
+            System.out.printf("Time elapsed: %s%n", processTime(overallTimeElapsed));
+            // Show fuel level
+            System.out.printf("Fuel level: %s%n%%",
+                    percentageFormatter.format(rocketFuelTankCapacity / rocketFuelTank * 100));
+
+            // Create inner loop that represents days in a week
+            for (int dayCounter = 1; dayCounter <= 7; dayCounter++) {
+
+                var dailyFuelConsumption = 0D;
+                var dailyDistanceCoverage = 0D;
+                var dailyTimeTraveled = 0D;
+                var missingTravelDistance = travelDistance - overallDistanceCovered;
+
+                // Show day number
+                System.out.printf("%n*** Day %d ***%n", dayCounter);
+
+                // Check fuel tank value
+                System.out.println("Fuel tank: " + fuelAndDistanceAmountFormatter.format(rocketFuelTank) + " gal");
+
+                // Check if fuel is enough for the next day
+                if (isFuelEnoughForNextDay(rocketFuelConsumptionRate, rocketFuelTank)) {
+                    if (missingTravelDistance <= possibleDailyDistanceCoverage) {
+                        dailyTimeTraveled = missingTravelDistance / rocketSpeed;
+                        dailyDistanceCoverage = missingTravelDistance;
+                    } else {
+                        dailyTimeTraveled = possibleDailyDistanceCoverage / rocketSpeed;
+                        dailyDistanceCoverage = possibleDailyDistanceCoverage;
+                    }
+                    dailyFuelConsumption = rocketFuelConsumptionRate * dailyTimeTraveled;
+                } else {
+                    // Handle running out of fuel at the next day
+                    // If there's not enough fuel to cover current and next day, go to fuel station
+                    // Simulate spending 10% of remaining fuel going to closest fuel station.
+                    dailyFuelConsumption = 0.1 * rocketFuelTank;
+                    rocketFuelTank -= 0.1 * rocketFuelTank;
+                    dailyTimeTraveled = 24;
+
+                    // Print fuel spent going to the gas station
+                    System.out.printf("%n%s gal were spent going to closest gas station.%n",
+                            fuelAndDistanceAmountFormatter.format(dailyFuelConsumption));
+                    goToGasStation(rocketNumber);
+                }
+
+                // Consume fuel each day and increase overall fuel consumed
+                overallFuelConsumed += dailyFuelConsumption;
+
+                rocketFuelTank -= dailyFuelConsumption;
+
+                // Increase overall distance covered
+                overallDistanceCovered += dailyDistanceCoverage;
+                // Increase overall time elapsed each day
+                overallTimeElapsed += dailyTimeTraveled;
+
+                // Print daily information
+                System.out.printf(
+                        "%nDaily Report:%n- Fuel consumed: %s gal%n- Distance covered: %s km%n- Time traveled: %s h%n",
+                        fuelAndDistanceAmountFormatter.format(dailyFuelConsumption),
+                        fuelAndDistanceAmountFormatter.format(dailyDistanceCoverage), processTime(dailyTimeTraveled));
+
+                // Finish journey if distance is covered
+                if (overallDistanceCovered == travelDistance) {
+                    break;
+                }
+            }
+
+            weekCounter++;
+
+        }
+
     }
 
     // --- AUXILIARY FUNCTIONS ---
@@ -475,6 +570,35 @@ public class SpaceStation {
 
         return String.format("%d days %02d hours %02d minutes and %02d seconds", days, (int) hours, (int) minutes,
                 (int) seconds);
+
+    }
+
+    // Check if there's enough fuel for the next two days
+    private static boolean isFuelEnoughForNextDay(double rocketFuelConsumptionRate, double fuelTank) {
+
+        if (fuelTank > rocketFuelConsumptionRate * 48) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    // Go to gas station (fill gas tank)
+    private static double goToGasStation(int rocketNumber) {
+
+        System.out.println(
+                """
+                        \s_____  __ __  _____  ____    _____  ____  _____  _____ \n/   __\\/  |  \\/   __\\/  _/   /  ___>/    \\/  _  \\/  _  \\\n|   __||  |  ||   __||  |--- |___  |\\-  -/|  |  ||   __/\n\\__/   \\_____/\\_____/\\_____/ <_____/ |__| \\_____/\\__/
+
+                                        .-\"\"\"\"-.\n          |==  ==|-.\n          |~~ ~~~|`\\\\\n          |ST.   | ||\n          |HORIZ |//\n          |ONS   |/\n          |      |\n        __|______|__\n       [____________]
+                              """);
+
+        chargeRocketFuelTank(rocketNumber);
+
+        System.out.printf("%nWe appreciate your patience. Your rocket's gas tank has been fully loaded.");
+
+        return rocketFuelTanks[rocketNumber];
 
     }
 
