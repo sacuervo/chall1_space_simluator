@@ -52,7 +52,7 @@ public class SpaceStation {
      */
     private static Double[] rocketFuelTanks = getRocketFuelTankCapacities();
 
-    MAIN
+    // --- MAIN ---
     public static void main(String[] args) throws Exception {
 
         runMainMenu();
