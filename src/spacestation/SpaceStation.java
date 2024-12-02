@@ -52,7 +52,7 @@ public class SpaceStation {
      */
     private static Double[] rocketFuelTanks = getRocketFuelTankCapacities();
 
-    // ------ MAIN ------
+    MAIN
     public static void main(String[] args) throws Exception {
 
         runMainMenu();
@@ -334,7 +334,6 @@ public class SpaceStation {
     }
 
     // Explore destination menu option
-
     private static void exploreDestinations() {
         getPlanetsInfo();
 
@@ -578,6 +577,7 @@ public class SpaceStation {
     }
 
     // Go to gas station (fill gas tank)
+
     private static double goToGasStation(int rocketNumber) {
 
         System.out.println(
